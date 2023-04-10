@@ -9,10 +9,8 @@ const Auth = () => {
         <img src="/images/logo.png" alt="logo" className=" h-32 md:h-40 "></img>
       </nav>
       <div className="relative flex justify-center items-center h-full">
-        <div className="bg-opacity-70 bg-black flex flex-col justify-center items-center px-8 py-8  w-50 h-50 md:w-96 md:h-96 ">
-          <h2 className="text-white font-semibold text-3xl ">Sign in</h2>
+        <div className="bg-opacity-70 bg-black flex flex-col justify-center items-center px-8 pb-8 pt-4 w-50 h-50 md:w-96 md:h-88 ">
           <Input />
-         
         </div>
       </div>
     </div>
