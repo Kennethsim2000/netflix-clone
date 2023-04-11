@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Input = () => {
   const [email, setEmail] = useState<string>("");
@@ -66,6 +69,14 @@ const Input = () => {
       <button className="text-white items-center bg-red-600 w-full rounded-md mt-2 mb-2 py-2 mt-6 hover:bg-red-800">
         {login ? "Login" : "Signup"}
       </button>
+      <div className="flex flex-row items-center gap-4  justify-center">
+        <div className="bg-white rounded-full h-10 w-10 flex justify-center items-center cursor-pointer hover:opacity-80">
+          <FcGoogle size={30} onClick={() => signIn()} />
+        </div>
+        <div className="bg-white rounded-full h-10 w-10 flex justify-center items-center cursor-pointer hover:opacity-80">
+          <FaGithub size={30} />
+        </div>
+      </div>
       <span>
         <p className="text-zinc-400 font-semibold inline-block pr-1.5">
           {login ? "First time using netflix?" : "Already have an account?"}
