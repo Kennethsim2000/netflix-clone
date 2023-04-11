@@ -71,7 +71,7 @@ const Input = () => {
       </button>
       <div className="flex flex-row items-center gap-4  justify-center">
         <div className="bg-white rounded-full h-10 w-10 flex justify-center items-center cursor-pointer hover:opacity-80">
-          <FcGoogle size={30} onClick={() => signIn()} />
+          <FcGoogle size={30} onClick={() => signIn("google")} />
         </div>
         <div className="bg-white rounded-full h-10 w-10 flex justify-center items-center cursor-pointer hover:opacity-80">
           <FaGithub size={30} />
