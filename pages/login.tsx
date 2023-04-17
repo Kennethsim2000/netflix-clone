@@ -3,6 +3,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 const Login = () => {
   const { data: session } = useSession();
+  console.log("hello");
   console.log(process.env.GOOGLE_CLIENT_ID);
   console.log(process.env.GOOGLE_CLIENT_SECRET);
 
