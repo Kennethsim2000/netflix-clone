@@ -24,7 +24,7 @@ const Sidebar = () => {
               Netflix
             </span>
           </a>
-          <ul className="font-medium">
+          <ul className="space-y-2 font-medium">
             <li>
               <Link
                 href="/"
