@@ -16,5 +16,6 @@ export default NextAuth({
       },
     }),
   ],
+  debug: process.env.NODE_ENV === "development",
   secret: process.env.JWT_SECRET,
 });
