@@ -3,11 +3,16 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 const Login = () => {
   const { data: session } = useSession();
+  console.log(process.env.GOOGLE_CLIENT_ID);
+  console.log(process.env.GOOGLE_CLIENT_SECRET);
+
   if (session) {
     return (
       <div>
         <p className="text-white">Welcome, {session.user?.email}</p>
-        <button onClick={() => signOut()}>Sign out</button>
+        <button className="bg-red-600" onClick={() => signOut()}>
+          Sign out
+        </button>
       </div>
     );
   } else {
