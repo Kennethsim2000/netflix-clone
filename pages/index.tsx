@@ -1,10 +1,20 @@
 import Sidebar from "@/components/sidebar";
+import Billboard from "@/components/Billboard";
+import { useState } from "react";
 
 export default function Home() {
+  const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
+
   return (
-    <>
-      <h1 className="text-2xl text-green-500">Netflix clone</h1>
-      <Sidebar />
-    </>
+    <div className="h-screen w-screen md:flex ">
+      <div className="flex h-screen">
+        <Sidebar
+          partialSideBar={partialSideBar}
+          setPartialSideBar={setPartialSideBar}
+        />
+
+        <Billboard />
+      </div>
+    </div>
   );
 }

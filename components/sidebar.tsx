@@ -1,56 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BiHomeAlt2 } from "react-icons/bi";
 import { AiOutlineStar } from "react-icons/ai";
 import { BsBookmark } from "react-icons/bs";
+import { HiMenu } from "react-icons/hi";
 
-const Sidebar = () => {
+interface SidebarProps {
+  partialSideBar: boolean;
+  setPartialSideBar: (value: boolean) => void;
+}
+const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
   return (
-    <div className="bg-gray-500">
-      <aside className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
-        <div className="h-full  overflow-y-auto bg-neutral-600 dark:bg-gray-800">
-          <a
-            href="https://portfolio-kenneth-azure.vercel.app/"
-            className="flex items-center pl-2.5 mb-5 bg-neutral-500 py-2"
-          >
-            <Image
-              src="/images/logo.png"
-              width={50}
-              height={50}
-              alt="logo picture"
-            />
-            <span className="self-center text-4xl font-semibold whitespace-nowrap text-red-600">
+    <div
+      className={`bg-gray-500  block origin-left duration-300  ${
+        partialSideBar ? "md:w-64" : "md:w-16"
+      } 
+    `}
+    >
+      {/* <aside className={` `}> */}
+      <div className=" bg-neutral-600 h-full ">
+        <div className="flex flex-row items-center pl-2.5  mb-5 bg-neutral-500 py-3">
+          <HiMenu
+            className={`ml-3 text-white cursor-pointer `}
+            size={20}
+            onClick={() => setPartialSideBar(!partialSideBar)}
+          />
+          <Image
+            src="/images/logo.png"
+            width={50}
+            height={50}
+            alt="logo picture"
+            className={`${partialSideBar ? "" : "hidden"}`}
+          />
+          <a href="https://portfolio-kenneth-azure.vercel.app/">
+            <span
+              className={`self-center text-4xl font-semibold whitespace-nowrap text-red-600 origin-left duration-75 ${
+                partialSideBar ? " " : "hidden"
+              }`}
+            >
               Netflix
             </span>
           </a>
-          <ul className="space-y-2 font-medium">
-            <li>
-              <Link
-                href="/"
-                className="flex items-center  py-3 px-2  text-white rounded-lg dark:text-white hover:bg-neutral-500 hover:text-black"
-              >
-                <span className="ml-3 text-xl pl-4 mr-2">Home</span>
-                <BiHomeAlt2 size={25} />
-              </Link>
-              <Link
-                href="/"
-                className="flex items-center py-3 px-2    text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
-              >
-                <span className="ml-3 text-xl pl-4 mr-2">Favourites</span>
-                <BsBookmark size={20} />
-              </Link>
-              <Link
-                href="/"
-                className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
-              >
-                <span className="ml-3 text-xl pl-4 mr-2">Reviews</span>
-                <AiOutlineStar size={25} />
-              </Link>
-            </li>
-          </ul>
         </div>
-      </aside>
+
+        <ul className="space-y-2 font-medium ">
+          <li>
+            <Link
+              href="/"
+              className="flex items-center  py-3 px-2  text-white rounded-lg dark:text-white hover:bg-neutral-500 hover:text-black"
+            >
+              <BiHomeAlt2 className="ml-3" size={20} />
+              <span
+                className={`ml-3 text-xl  mr-2 origin-left duration-75 ${
+                  partialSideBar ? "pl-4" : "hidden"
+                }`}
+              >
+                Home
+              </span>
+            </Link>
+
+            <Link
+              href="/"
+              className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
+            >
+              <BsBookmark className="ml-3" size={20} />
+              <span
+                className={`ml-3 text-xl mr-2 origin-left duration-75 ${
+                  partialSideBar ? "pl-4 " : "hidden"
+                }`}
+              >
+                Favourites
+              </span>
+            </Link>
+
+            <Link
+              href="/"
+              className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
+            >
+              <AiOutlineStar className="ml-3" size={20} />
+              <span
+                className={`ml-3 text-xl mr-2 origin-left duration-75 ${
+                  partialSideBar ? "pl-4 " : "hidden"
+                }`}
+              >
+                Reviews
+              </span>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      {/* </aside> */}
     </div>
   );
 };
