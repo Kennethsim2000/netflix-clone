@@ -17,8 +17,8 @@ const Topbar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
       className={`bg-gray-500  duration-300 w-screen 
     `}
     >
-      <div className=" bg-neutral-600 h-full w-full duration-300 ">
-        <div className="flex flex-row justify-between items-center pl-2.5   bg-neutral-500 py-3">
+      <div className=" bg-neutral-600 h-full w-full transition duration-500 ease-in ">
+        <div className="flex flex-row justify-between items-center pl-2.5  bg-neutral-500 py-3">
           <HiMenu
             className={`ml-3 text-white cursor-pointer `}
             size={20}
@@ -35,8 +35,8 @@ const Topbar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
         </div>
 
         <ul
-          className={`space-y-2 font-medium ease-in duration-300 origin-bottom  ${
-            partialSideBar ? "" : "hidden"
+          className={`space-y-2 font-medium transition ease-in duration-300 origin-bottom  ${
+            partialSideBar ? "hidden " : ""
           }  `}
         >
           <li>

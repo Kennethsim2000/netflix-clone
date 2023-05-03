@@ -16,7 +16,7 @@ export default function Home() {
           setPartialSideBar={setPartialSideBar}
         />
       </aside>
-      <div className="sticky top-0 sm:block md:hidden duration-300">
+      <div className="sticky top-0  md:hidden transition duration-300 ease-in-out">
         <Topbar
           partialSideBar={partialSideBar}
           setPartialSideBar={setPartialSideBar}
@@ -25,7 +25,7 @@ export default function Home() {
 
       <main
         className={`relative h-screen flex-col w-full duration-300 ${
-          partialSideBar ? "md:ml-64  md:mt-0" : "md:ml-16  md:mt-0"
+          partialSideBar ? "md:ml-64 " : "md:ml-16  "
         }  `}
       >
         <Billboard />

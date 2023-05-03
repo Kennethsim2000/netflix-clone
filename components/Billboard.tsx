@@ -6,7 +6,7 @@ const Billboard = () => {
   const { data, error, isLoading } = useBillboard();
 
   return (
-    <div className="w-full h-5/6 flex-grow">
+    <div className="w-full h-1/2 md:h-5/6 flex-grow">
       <video
         className="object-cover h-full w-full brightness-[60%]"
         muted
