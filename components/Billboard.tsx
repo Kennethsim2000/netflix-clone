@@ -6,20 +6,23 @@ const Billboard = () => {
   const { data, error, isLoading } = useBillboard();
 
   return (
-    <div className="w-screen h-full">
-      <div className="w-screen h-screen">
-        <video
-          className="object-cover h-full w-full brightness-[60%]"
-          muted
-          loop
-          autoPlay
-          poster={data?.thumbnailUrl}
-          src="/videos/ghost.mp4"
-        ></video>
-      </div>
+    <div className="w-full h-5/6 flex-grow">
+      <video
+        className="object-cover h-full w-full brightness-[60%]"
+        muted
+        loop
+        autoPlay
+        poster={data?.thumbnailUrl}
+        src="/videos/ghost.mp4"
+      ></video>
 
-      <div className="absolute top-1/2 left-1/2">
-        <button className="z-40 bg-white rounded px-3 py-3 ">Watch now</button>
+      <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16 ">
+        <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
+          {data?.title}
+        </p>
+        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w[80%]">
+          {data?.description}
+        </p>
       </div>
     </div>
   );

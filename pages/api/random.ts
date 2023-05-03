@@ -17,3 +17,5 @@ export default async function handler(
   });
   return res.status(200).json(randomMovies[0]);
 }
+
+/*This API is used to retrieve a random movie from the database and return it*/

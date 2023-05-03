@@ -15,3 +15,6 @@ const useBillboard = () => {
   };
 };
 export default useBillboard;
+
+/* Fetch a random movie from the database
+The options object means that the data will not automatically be revalidated if it's stale, if the user focuses on the tab, or if the user reconnects to the internet. */

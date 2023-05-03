@@ -13,12 +13,11 @@ interface SidebarProps {
 const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
   return (
     <div
-      className={`bg-gray-500  block origin-left duration-300  ${
+      className={`bg-gray-500   origin-left duration-300 h-full ${
         partialSideBar ? "md:w-64" : "md:w-16"
       } 
     `}
     >
-      {/* <aside className={` `}> */}
       <div className=" bg-neutral-600 h-full ">
         <div className="flex flex-row items-center pl-2.5  mb-5 bg-neutral-500 py-3">
           <HiMenu
@@ -90,7 +89,6 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
           </li>
         </ul>
       </div>
-      {/* </aside> */}
     </div>
   );
 };
