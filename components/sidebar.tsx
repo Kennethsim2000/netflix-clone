@@ -13,7 +13,7 @@ interface SidebarProps {
 const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
   return (
     <div
-      className={`bg-gray-500   origin-left duration-300 h-full ${
+      className={`bg-gray-500  origin-left duration-300 h-full ${
         partialSideBar ? "md:w-64" : "md:w-16"
       } 
     `}
@@ -51,7 +51,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             >
               <BiHomeAlt2 className="ml-3" size={20} />
               <span
-                className={`ml-3 text-xl  mr-2 origin-left duration-75 ${
+                className={`ml-3 text-xl  mr-2  ${
                   partialSideBar ? "pl-4" : "hidden"
                 }`}
               >
@@ -65,7 +65,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             >
               <BsBookmark className="ml-3" size={20} />
               <span
-                className={`ml-3 text-xl mr-2 origin-left duration-75 ${
+                className={`ml-3 text-xl mr-2  ${
                   partialSideBar ? "pl-4 " : "hidden"
                 }`}
               >
@@ -79,7 +79,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             >
               <AiOutlineStar className="ml-3" size={20} />
               <span
-                className={`ml-3 text-xl mr-2 origin-left duration-75 ${
+                className={`ml-3 text-xl mr-2 ${
                   partialSideBar ? "pl-4 " : "hidden"
                 }`}
               >

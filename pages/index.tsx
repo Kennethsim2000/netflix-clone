@@ -1,4 +1,5 @@
 import Sidebar from "@/components/sidebar";
+import Topbar from "@/components/Topbar";
 import Billboard from "@/components/Billboard";
 import { useState } from "react";
 import MovieList from "@/components/movieList";
@@ -8,17 +9,23 @@ export default function Home() {
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
   const { data: movies = [] } = useMovieList();
   return (
-    <div className="flex w-screen ">
-      <aside className="fixed top-0 h-screen">
+    <div className="flex flex-col md:flex-row w-screen ">
+      <aside className="fixed top-0 h-screen hidden md:block">
         <Sidebar
           partialSideBar={partialSideBar}
           setPartialSideBar={setPartialSideBar}
         />
       </aside>
+      <div className="sticky top-0 sm:block md:hidden duration-300">
+        <Topbar
+          partialSideBar={partialSideBar}
+          setPartialSideBar={setPartialSideBar}
+        />
+      </div>
 
       <main
-        className={`h-screen flex-col w-full duration-300 ${
-          partialSideBar ? "md:ml-64" : "md:ml-16"
+        className={`relative h-screen flex-col w-full duration-300 ${
+          partialSideBar ? "md:ml-64  md:mt-0" : "md:ml-16  md:mt-0"
         }  `}
       >
         <Billboard />
