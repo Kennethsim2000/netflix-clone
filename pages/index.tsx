@@ -7,7 +7,7 @@ import useMovieList from "@/hooks/useMovieList";
 
 export default function Home() {
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
-  const { data: movies = [] } = useMovieList();
+  // const { data: movies = [] } = useMovieList();
   return (
     <div className="flex flex-col md:flex-row w-screen ">
       <aside className="fixed top-0 h-screen hidden md:block">
@@ -29,9 +29,9 @@ export default function Home() {
         }  `}
       >
         <Billboard />
-        <div className="pb-40">
+        {/* <div className="pb-40">
           <MovieList title="Trending now" data={movies} />
-        </div>
+        </div> */}
       </main>
     </div>
   );

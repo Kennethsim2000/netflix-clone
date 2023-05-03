@@ -13,7 +13,7 @@ const Billboard = () => {
         loop
         autoPlay
         poster={data?.thumbnailUrl}
-        src="/videos/ghost.mp4"
+        src={data?.videoUrl}
       ></video>
 
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16 ">

@@ -17,9 +17,6 @@ const Topbar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
       className={`bg-gray-500  duration-300 w-screen 
     `}
     >
-      {/* ${
-        partialSideBar ? "h-64" : "h-16"
-      }  */}
       <div className=" bg-neutral-600 h-full w-full duration-300 ">
         <div className="flex flex-row justify-between items-center pl-2.5   bg-neutral-500 py-3">
           <HiMenu
