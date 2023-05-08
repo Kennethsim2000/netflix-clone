@@ -1,6 +1,7 @@
 import Sidebar from "@/components/sidebar";
 import Topbar from "@/components/Topbar";
 import Billboard from "@/components/Billboard";
+import Carousel from "@/components/Carousel";
 import { useState } from "react";
 import MovieList from "@/components/movieList";
 import useMovieList from "@/hooks/useMovieList";
@@ -30,6 +31,7 @@ export default function Home() {
         }  `}
       >
         <Billboard />
+        {/* <Carousel /> */}
         <div className="pb-40">
           <MovieList title="Trending now" data={movies} />
         </div>
