@@ -6,12 +6,17 @@ import { useState } from "react";
 import MovieList from "@/components/movieList";
 import useMovieList from "@/hooks/useMovieList";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const { data, status } = useSession();
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
   const { data: movies = [] } = useMovieList();
   console.log(data);
+  if (status === "unauthenticated") {
+    router.push("/", undefined, { shallow: true });
+  }
   return (
     <div className="flex flex-col md:flex-row w-screen ">
       <aside className="fixed top-0 h-screen hidden md:block">

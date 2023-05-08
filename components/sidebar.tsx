@@ -6,6 +6,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import { BsBookmark } from "react-icons/bs";
 import { HiMenu } from "react-icons/hi";
 import { TbLogout } from "react-icons/tb";
+import { signOut } from "next-auth/react";
 
 interface SidebarProps {
   partialSideBar: boolean;
@@ -90,6 +91,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             <Link
               href="/"
               className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
+              onClick={() => signOut()}
             >
               <TbLogout className="ml-3" size={20} />
               <span
