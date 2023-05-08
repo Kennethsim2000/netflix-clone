@@ -47,14 +47,6 @@ const Billboard = () => {
       <div className="text-white absolute top-[40%] cursor-pointer -translate-x-0 translate-y-[50%] right-5 text-2xl rounded-full p-2 bg-black/20">
         <BsChevronCompactRight size={40} onClick={nextMovie} />
       </div>
-      {/* <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-20 ">
-        <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
-          {movies[currentIndex]?.title}
-        </p>
-        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w[80%]">
-          {movies[currentIndex]?.description}
-        </p>
-      </div> */}
       {showContent && (
         <div className="absolute top-[40%] md:top-[40%] ml-20 md:ml-20 ">
           <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
