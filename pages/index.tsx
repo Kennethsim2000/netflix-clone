@@ -1,44 +1,26 @@
-import Sidebar from "@/components/sidebar";
-import Topbar from "@/components/Topbar";
-import Billboard from "@/components/Billboard";
-import Carousel from "@/components/Carousel";
-import { useState } from "react";
-import MovieList from "@/components/movieList";
-import useMovieList from "@/hooks/useMovieList";
+import React from "react";
+import Input from "../components/input";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
-export default function Home() {
+const Auth = () => {
+  const router = useRouter();
   const { data, status } = useSession();
-
-  const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
-  const { data: movies = [] } = useMovieList();
-  console.log("movies is " + movies);
+  console.log(data);
+  if (status === "authenticated") {
+    router.push("/movie");
+  }
   return (
-    <div className="flex flex-col md:flex-row w-screen ">
-      <aside className="fixed top-0 h-screen hidden md:block">
-        <Sidebar
-          partialSideBar={partialSideBar}
-          setPartialSideBar={setPartialSideBar}
-        />
-      </aside>
-      <div className="sticky top-0  md:hidden transition duration-300 ease-in-out">
-        <Topbar
-          partialSideBar={partialSideBar}
-          setPartialSideBar={setPartialSideBar}
-        />
-      </div>
-
-      <main
-        className={`relative h-screen flex-col w-full duration-300 ${
-          partialSideBar ? "md:ml-64 " : "md:ml-16  "
-        }  `}
-      >
-        <Billboard />
-        {/* <Carousel /> */}
-        <div className="pb-40">
-          <MovieList title="Trending now" data={movies} />
+    <div className=" relative h-full w-full bg-[url('/images/auth.jpg')] bg-no-repeat bg-cover ">
+      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+      <nav className="px-12 py-5 absolute left-16 md:left-2"></nav>
+      <div className="relative flex justify-center items-center h-full">
+        <div className="bg-opacity-70 bg-black flex flex-col justify-center items-center px-8 pb-8 pt-4 w-full h-50 md:w-96 md:h-88 ">
+          <Input />
         </div>
-      </main>
+      </div>
     </div>
   );
-}
+};
+
+export default Auth;
