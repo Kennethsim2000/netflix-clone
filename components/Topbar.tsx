@@ -5,6 +5,7 @@ import { BsBookmark } from "react-icons/bs";
 import { HiMenu } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
+import { TbLogout } from "react-icons/tb";
 
 interface SidebarProps {
   partialSideBar: boolean;
@@ -63,6 +64,15 @@ const Topbar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
               <AiOutlineStar className="ml-3" size={20} />
               <span className={`ml-3 text-xl mr-2  origin-left duration-300`}>
                 Reviews
+              </span>
+            </Link>
+            <Link
+              href="/"
+              className="flex items-center  py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
+            >
+              <TbLogout className="ml-3" size={20} />
+              <span className={`ml-3 text-xl mr-2  origin-left duration-300`}>
+                Log Out
               </span>
             </Link>
           </li>

@@ -5,8 +5,11 @@ import Carousel from "@/components/Carousel";
 import { useState } from "react";
 import MovieList from "@/components/movieList";
 import useMovieList from "@/hooks/useMovieList";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Home() {
+  const { data, status } = useSession();
+
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
   const { data: movies = [] } = useMovieList();
   console.log("movies is " + movies);

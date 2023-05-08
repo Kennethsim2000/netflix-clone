@@ -5,6 +5,7 @@ import { BiHomeAlt2 } from "react-icons/bi";
 import { AiOutlineStar } from "react-icons/ai";
 import { BsBookmark } from "react-icons/bs";
 import { HiMenu } from "react-icons/hi";
+import { TbLogout } from "react-icons/tb";
 
 interface SidebarProps {
   partialSideBar: boolean;
@@ -84,6 +85,19 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
                 }`}
               >
                 Reviews
+              </span>
+            </Link>
+            <Link
+              href="/"
+              className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
+            >
+              <TbLogout className="ml-3" size={20} />
+              <span
+                className={`ml-3 text-xl mr-2 ${
+                  partialSideBar ? "pl-4 " : "hidden"
+                }`}
+              >
+                Log Out
               </span>
             </Link>
           </li>
