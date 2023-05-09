@@ -70,7 +70,11 @@ const Topbar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             <Link
               href="/"
               className="flex items-center  py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
-              onClick={() => signOut()}
+              onClick={() =>
+                signOut({
+                  callbackUrl: "/",
+                })
+              }
             >
               <TbLogout className="ml-3" size={20} />
               <span className={`ml-3 text-xl mr-2  origin-left duration-300`}>

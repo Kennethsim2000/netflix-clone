@@ -48,7 +48,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
         <ul className="space-y-2 font-medium ">
           <li>
             <Link
-              href="/"
+              href="/movie"
               className="flex items-center  py-3 px-2  text-white rounded-lg dark:text-white hover:bg-neutral-500 hover:text-black"
             >
               <BiHomeAlt2 className="ml-3" size={20} />
@@ -62,7 +62,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             </Link>
 
             <Link
-              href="/"
+              href="/favourite"
               className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
             >
               <BsBookmark className="ml-3" size={20} />
@@ -76,7 +76,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             </Link>
 
             <Link
-              href="/"
+              href="/review"
               className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
             >
               <AiOutlineStar className="ml-3" size={20} />
@@ -88,10 +88,13 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
                 Reviews
               </span>
             </Link>
-            <Link
-              href="/"
+            <div
               className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
-              onClick={() => signOut()}
+              onClick={() =>
+                signOut({
+                  callbackUrl: "/",
+                })
+              }
             >
               <TbLogout className="ml-3" size={20} />
               <span
@@ -101,7 +104,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
               >
                 Log Out
               </span>
-            </Link>
+            </div>
           </li>
         </ul>
       </div>

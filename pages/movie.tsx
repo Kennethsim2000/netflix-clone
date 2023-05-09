@@ -12,10 +12,7 @@ export default function Home() {
   const { data, status } = useSession();
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
   const { data: movies = [] } = useMovieList();
-  console.log(data);
-  if (status === "unauthenticated") {
-    router.push("/", undefined, { shallow: true });
-  }
+
   return (
     <div className="flex flex-col md:flex-row w-screen ">
       <aside className="fixed top-0 h-screen hidden md:block">

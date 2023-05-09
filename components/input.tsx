@@ -25,6 +25,20 @@ const Input = () => {
       console.log(error);
     }
   }, [email, username, password]);
+
+  const loginFunction = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/movies",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password]);
+
   return (
     <div className=" mb-4 w-full flex flex-col gap-2">
       {login ? (
@@ -83,7 +97,7 @@ const Input = () => {
       </div>
       <button
         className="text-white items-center bg-red-600 w-full rounded-md mt-2 mb-2 py-2 mt-6 hover:bg-red-800"
-        onClick={register}
+        onClick={login ? loginFunction : register}
       >
         {login ? "Login" : "Signup"}
       </button>
