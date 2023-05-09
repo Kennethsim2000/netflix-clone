@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useSession, signIn, signOut } from "next-auth/react";
+import axios from "axios";
 
 const Input = () => {
   const [email, setEmail] = useState<string>("");
@@ -10,6 +11,20 @@ const Input = () => {
   const [password, setPassword] = useState<string>("");
   const [login, setLogin] = useState<boolean>(true);
 
+  const register = useCallback(async () => {
+    try {
+      console.log("username is " + username);
+      console.log("email is " + email);
+      console.log("password is " + password);
+      await axios.post("/api/register", {
+        email,
+        username,
+        password,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, username, password]);
   return (
     <div className=" mb-4 w-full flex flex-col gap-2">
       {login ? (
@@ -66,7 +81,10 @@ const Input = () => {
           Password
         </label>
       </div>
-      <button className="text-white items-center bg-red-600 w-full rounded-md mt-2 mb-2 py-2 mt-6 hover:bg-red-800">
+      <button
+        className="text-white items-center bg-red-600 w-full rounded-md mt-2 mb-2 py-2 mt-6 hover:bg-red-800"
+        onClick={register}
+      >
         {login ? "Login" : "Signup"}
       </button>
       <div className="flex flex-row items-center gap-4  justify-center">
