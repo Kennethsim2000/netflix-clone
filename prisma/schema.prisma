@@ -11,17 +11,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User {
-//   id             String    @id @default(auto()) @map("_id") @db.ObjectId //way for mongodb id
-//   name           String
-//   image          String?
-//   email          String?   @unique
-//   emailVerified  DateTime?
-//   hashedPassword String?
-//   createdAt      DateTime  @default(now())
-//   updatedAt      DateTime  @updatedAt
-//   favouriteIds   String[]  @db.ObjectId
-// }
+model User {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId //way for mongodb id
+  image          String?
+  username       String
+  email          String?  @unique
+  hashedPassword String?
+  favouriteIds   String[] @db.ObjectId
+}
 
 model Movie {
   id           String @id @default(auto()) @map("_id") @db.ObjectId
