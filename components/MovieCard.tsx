@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import Image from "next/image";
 import { BsFillPlayFill } from "react-icons/bs";
 import { BsHandThumbsUpFill } from "react-icons/bs";
 

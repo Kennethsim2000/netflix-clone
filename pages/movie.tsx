@@ -6,13 +6,13 @@ import MovieList from "@/components/movieList";
 import useMovieList from "@/hooks/useMovieList";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import { Movie } from "@prisma/client";
 
 export default function Home() {
   const router = useRouter();
   const { data, status } = useSession();
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
-  const { data: movies = [] } = useMovieList();
-
+  const { data: movies = [] }: { data: Movie[] | undefined } = useMovieList();
   return (
     <div className="flex flex-col md:flex-row w-screen ">
       <aside className="fixed top-0 h-screen hidden md:block">
