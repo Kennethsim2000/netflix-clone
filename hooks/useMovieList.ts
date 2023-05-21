@@ -3,7 +3,7 @@ import fetcher from "@/lib/fetcher";
 import exp from "constants";
 
 const useMovieList = () => {
-  const { data, error, isLoading } = useSWR("/api/movies/movieList", fetcher, {
+  const { data, error, isLoading } = useSWR("/api/movieList", fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,

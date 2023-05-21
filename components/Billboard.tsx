@@ -42,10 +42,10 @@ const Billboard = () => {
       </div>
 
       <div className=" z-30 absolute top-[40%] cursor-pointer left-5 text-2xl text-white -translate-x-0 translate-y-[50%] rounded-full p-2 bg-black/20 ">
-        <BsChevronCompactLeft size={40} onClick={prevMovie} />
+        <BsChevronCompactLeft size={40} onClick={() => prevMovie()} />
       </div>
-      <div className="text-white absolute top-[40%] cursor-pointer -translate-x-0 translate-y-[50%] right-5 text-2xl rounded-full p-2 bg-black/20">
-        <BsChevronCompactRight size={40} onClick={nextMovie} />
+      <div className="z-30 text-white absolute top-[40%] cursor-pointer -translate-x-0 translate-y-[50%] right-5 text-2xl rounded-full p-2 bg-black/20">
+        <BsChevronCompactRight size={40} onClick={() => nextMovie()} />
       </div>
       {showContent && (
         <div className="absolute top-[40%] md:top-[40%] ml-20 md:ml-20 ">
