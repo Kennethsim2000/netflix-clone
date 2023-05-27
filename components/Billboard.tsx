@@ -5,7 +5,6 @@ import useMovieList from "@/hooks/useMovieList";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 const Billboard = () => {
-  const { data, error, isLoading } = useBillboard();
   const { data: movies = [] } = useMovieList();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showContent, setShowContent] = useState(true);

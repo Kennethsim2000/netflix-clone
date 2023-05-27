@@ -4,13 +4,28 @@ import Billboard from "@/components/Billboard";
 import { useState } from "react";
 import MovieList from "@/components/movieList";
 import useMovieList from "@/hooks/useMovieList";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { Movie } from "@prisma/client";
+import { NextPageContext } from "next";
+
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 export default function Home() {
-  const router = useRouter();
-  const { data, status } = useSession();
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
   const { data: movies = [] }: { data: Movie[] | undefined } = useMovieList();
   return (
