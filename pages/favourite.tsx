@@ -11,6 +11,7 @@ import Pagination from "@/components/Pagination";
 export default function Favourites() {
   const router = useRouter();
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
   const { data: movies = [] }: { data: Movie[] | undefined } =
     useFindFourList();
 
@@ -22,7 +23,7 @@ export default function Favourites() {
           setPartialSideBar={setPartialSideBar}
         />
       </aside>
-      <div className="sticky top-0  md:hidden transition duration-300 ease-in-out">
+      <div className="sticky top-0  z-50 md:hidden transition duration-300 ease-in-out">
         <Topbar
           partialSideBar={partialSideBar}
           setPartialSideBar={setPartialSideBar}
@@ -34,13 +35,12 @@ export default function Favourites() {
           partialSideBar ? "md:ml-64 " : "md:ml-16  "
         }  `}
       >
-        <div className=" grid md:grid-cols-2 md:gap-3 gap-y-4">
+        <div className=" grid grid-cols-1 md:grid-cols-2 md:gap-3 gap-y-4">
           {movies.map((movie: Movie) => (
-            // <div>hello</div>
             <MovieDetail key={movie.id} data={movie} />
           ))}
         </div>
-        <Pagination />
+        <Pagination page={page} setPage={setPage} />
       </main>
     </div>
   );

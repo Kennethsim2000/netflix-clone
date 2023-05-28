@@ -8,16 +8,18 @@ interface MoviecardProps {
 
 const MovieDetail: React.FC<MoviecardProps> = ({ data }) => {
   return (
-    <div className="group bg-zinc-900 col-span relative w-full h-[20vw] py-4">
-      <div className=" flex flex-row gap-3">
+    <div className="group bg-zinc-900 col-span relative w-full md:w-160 py-4">
+      <div className="flex flex-col md:flex-row gap-3">
         <img
-          className="cursor-pointer object-cover transition duration shadow-xl rounded-md  delay-300 w-56 h-[18vw]"
+          className="cursor-pointer object-cover transition duration shadow-xl rounded-md w-28 md:w-52 h-40 md:h-56"
           src={data.thumbnailUrl}
           alt="thumbnail"
         />
-        <div className="flex flex-col justify-between">
-          <h2 className="text-white text-2xl font-bold">{data.title}</h2>
-          <div className="text-white bg-red-700 h-[9vw] text-sm">
+        <div className="flex flex-col justify-between flex-grow ">
+          <h2 className="text-white text-lg md:text-xl font-bold">
+            {data.title}
+          </h2>
+          <div className="text-white bg-red-700 md:h-28 text-sm py-2 overflow-hidden ">
             {data.description}
           </div>
           <p className="text-white mt-2">{data.duration}</p>

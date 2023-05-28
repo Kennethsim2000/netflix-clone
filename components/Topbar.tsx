@@ -16,10 +16,10 @@ interface SidebarProps {
 const Topbar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
   return (
     <div
-      className={`bg-gray-500  duration-300 w-screen 
+      className={`bg-gray-500  duration-300 w-screen sticky top-0
     `}
     >
-      <div className=" bg-neutral-600 h-full w-full transition duration-500 ease-in ">
+      <div className=" bg-neutral-600  w-full transition duration-500 ease-in ">
         <div className="flex flex-row justify-between items-center pl-2.5  bg-neutral-500 py-3">
           <HiMenu
             className={`ml-3 text-white cursor-pointer `}
