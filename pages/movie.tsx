@@ -1,13 +1,14 @@
 import Sidebar from "@/components/sidebar";
 import Topbar from "@/components/Topbar";
 import Billboard from "@/components/Billboard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MovieList from "@/components/movieList";
 import useMovieList from "@/hooks/useMovieList";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { Movie } from "@prisma/client";
 import { NextPageContext } from "next";
+import axios from "axios";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -19,7 +20,6 @@ export async function getServerSideProps(context: NextPageContext) {
       },
     };
   }
-
   return {
     props: {},
   };
@@ -28,6 +28,27 @@ export async function getServerSideProps(context: NextPageContext) {
 export default function Home() {
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
   const { data: movies = [] }: { data: Movie[] | undefined } = useMovieList();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    const updateUser = async () => {
+      try {
+        if (session?.user) {
+          // Check if session.user is available
+          const { email, name } = session.user;
+          await axios.post("/api/findExist", {
+            email: email,
+            username: name,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    updateUser();
+  }, []);
+
   return (
     <div className="flex flex-col md:flex-row w-screen ">
       <aside className="fixed top-0 h-screen hidden md:block">

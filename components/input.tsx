@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn, signOut, getSession } from "next-auth/react";
 import axios from "axios";
 
 const Input = () => {
@@ -13,9 +13,6 @@ const Input = () => {
 
   const register = useCallback(async () => {
     try {
-      console.log("username is " + username);
-      console.log("email is " + email);
-      console.log("password is " + password);
       await axios.post("/api/register", {
         email,
         username,
@@ -38,6 +35,14 @@ const Input = () => {
       console.log(error);
     }
   }, [email, password]);
+
+  const googleSignIn = async () => {
+    try {
+      const response = await signIn("google");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className=" mb-4 w-full flex flex-col gap-2">
@@ -103,7 +108,7 @@ const Input = () => {
       </button>
       <div className="flex flex-row items-center gap-4  justify-center">
         <div className="bg-white rounded-full h-10 w-10 flex justify-center items-center cursor-pointer hover:opacity-80">
-          <FcGoogle size={30} onClick={() => signIn("google")} />
+          <FcGoogle size={30} onClick={() => googleSignIn()} />
         </div>
         <div className="bg-white rounded-full h-10 w-10 flex justify-center items-center cursor-pointer hover:opacity-80">
           <FaGithub size={30} />

@@ -10,22 +10,20 @@ export default async function handler(
     return res.status(405).end();
   }
   try {
-    console.log("code comes to register handler");
-    const { email, username, password } = req.body;
+    const { email, username } = req.body;
     const existingUser = await prismadb.user.findUnique({
       where: {
         email: email,
       },
     });
     if (existingUser) {
-      return res.status(422).json({ error: "Email taken" });
+      return res.status(422).json({ error: "user already exists" });
     }
-    const hashedPassword = await bcrypt.hash(password, 12);
     const user = await prismadb.user.create({
       data: {
         email: email,
         username: username,
-        hashedPassword: hashedPassword,
+        hashedPassword: "",
         image: "",
       },
     });
