@@ -10,6 +10,7 @@ const Input = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [login, setLogin] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const register = useCallback(async () => {
     try {
@@ -25,12 +26,15 @@ const Input = () => {
 
   const loginFunction = useCallback(async () => {
     try {
-      await signIn("credentials", {
+      const response = await signIn("credentials", {
         email,
         password,
         redirect: false,
         callbackUrl: "/movies",
       });
+      if (response?.error) {
+        setErrorMessage(response.error);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -125,6 +129,7 @@ const Input = () => {
           {login ? "Create an account" : "Login"}
         </p>
       </span>
+      {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
     </div>
   );
 };

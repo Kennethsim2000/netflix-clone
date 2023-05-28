@@ -37,7 +37,7 @@ export default NextAuth({
         );
 
         if (!isCorrectPassword) {
-          throw new Error("Incorrect password");
+          throw new Error("Incorrect Password");
         }
         return user;
       },
