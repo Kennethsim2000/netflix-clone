@@ -2,22 +2,12 @@ import React from "react";
 import { isEmpty } from "lodash";
 import MovieCard from "./MovieCard";
 
-interface Session {
-  user: {
-    name: string;
-    email: string;
-  };
-  accessToken: string;
-  expires: number;
-}
-
 interface MovieListProps {
   data: Record<string, any>[];
   title: string;
-  session: Session | null;
 }
 
-const movieList: React.FC<MovieListProps> = ({ data, title, session }) => {
+const movieList: React.FC<MovieListProps> = ({ data, title }) => {
   return (
     <div className=" px-4 md:px-12 mt-4 space-y-8">
       <div>
@@ -25,12 +15,7 @@ const movieList: React.FC<MovieListProps> = ({ data, title, session }) => {
       </div>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-2 ">
         {data.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            data={movie}
-            id={movie.id}
-            session={session}
-          />
+          <MovieCard key={movie.id} data={movie} id={movie.id} />
         ))}
       </div>
     </div>

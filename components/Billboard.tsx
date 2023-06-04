@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import useBillboard from "@/hooks/useBillboard";
 import useMovieList from "@/hooks/useMovieList";
 
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
@@ -61,4 +60,3 @@ const Billboard = () => {
 };
 
 export default Billboard;
-// showinfo=0&autoplay=1&&mute=1&enablejsapi=1&controls=0&loop=1

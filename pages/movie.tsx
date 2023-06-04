@@ -71,7 +71,7 @@ export default function Home() {
       >
         <Billboard />
         <div className="pb-40">
-          <MovieList title="Trending now" data={movies} session={session} />
+          <MovieList title="Trending now" data={movies} />
         </div>
       </main>
     </div>
