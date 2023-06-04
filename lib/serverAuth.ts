@@ -4,11 +4,10 @@ import prismadb from "@/lib/prismadb";
 
 const serverAuth = async (req: NextApiRequest) => {
   const session = await getSession({ req });
-
+  console.log(session);
   if (!session?.user?.email) {
     throw new Error("Not signed in");
   }
-
   const currentUser = await prismadb.user.findUnique({
     where: {
       email: session.user.email,
@@ -22,3 +21,5 @@ const serverAuth = async (req: NextApiRequest) => {
 };
 
 export default serverAuth;
+
+/*Utilises the session of the request to get the current user */

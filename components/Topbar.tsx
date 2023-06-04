@@ -51,7 +51,7 @@ const Topbar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             </Link>
 
             <Link
-              href="/"
+              href="/favourite"
               className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
             >
               <BsBookmark className="ml-3" size={20} />
@@ -59,7 +59,7 @@ const Topbar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
             </Link>
 
             <Link
-              href="/"
+              href="/review"
               className="flex items-center  py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
             >
               <AiOutlineStar className="ml-3" size={20} />

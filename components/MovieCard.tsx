@@ -1,13 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from "axios";
+import { useSession } from "next-auth/react";
 import React from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import { BsHandThumbsUpFill } from "react-icons/bs";
 
 interface MoviecardProps {
   data: Record<string, any>;
+  id: string;
 }
 
-const MovieCard: React.FC<MoviecardProps> = ({ data }) => {
+const MovieCard: React.FC<MoviecardProps> = ({ data, id }) => {
+  const { data: session } = useSession();
+  const addFavourite = async () => {
+    await axios.post("/api/updateFavourite", {
+      favouriteId: id,
+      email: session?.user?.email,
+    });
+  };
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
       <img
@@ -26,7 +36,10 @@ const MovieCard: React.FC<MoviecardProps> = ({ data }) => {
             <div className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300">
               <BsFillPlayFill size={30} />
             </div>
-            <div className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300">
+            <div
+              className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300"
+              onClick={() => addFavourite()}
+            >
               <BsHandThumbsUpFill size={25} />
             </div>
             <div className="cursor-pointer w-6 h-6 lg:w-20 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 font-bold">
