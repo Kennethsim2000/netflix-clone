@@ -89,7 +89,7 @@ const Sidebar = ({ partialSideBar, setPartialSideBar }: SidebarProps) => {
               </span>
             </Link>
             <div
-              className="flex items-center py-3 px-2   text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
+              className="flex items-center py-3 px-2 hover:cursor-pointer  text-white rounded-lg  hover:bg-neutral-500 hover:text-black"
               onClick={() =>
                 signOut({
                   callbackUrl: "/",
