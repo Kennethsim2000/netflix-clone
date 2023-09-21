@@ -48,7 +48,6 @@ export default function Home() {
     };
     updateUser();
   }, []);
-
   return (
     <div className="flex flex-col md:flex-row w-screen ">
       <aside className="fixed top-0 h-screen hidden md:block">

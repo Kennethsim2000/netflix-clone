@@ -1,19 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "@/components/sidebar";
 import Topbar from "@/components/Topbar";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Movie } from "@prisma/client";
+import { Movie, User } from "@prisma/client";
 import MovieDetail from "@/components/MovieDetail";
-import useFindFourList from "@/hooks/useFindFourList";
 import Pagination from "@/components/Pagination";
+import serverAuth from "@/lib/serverAuth";
+import { NextApiRequest, NextPageContext } from "next";
+import axios from "axios";
 
-export default function Favourites() {
+export async function getServerSideProps(context: NextPageContext) {
+  try {
+    if (!context.req) {
+      throw new Error("Request object not available.");
+    }
+    // Call the serverAuth function to retrieve the currentUser
+    const { currentUser } = await serverAuth(context.req as NextApiRequest);
+    return {
+      props: {
+        currentUser,
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: "/", // Redirect to the login page, for example
+        permanent: false,
+      },
+    };
+  }
+}
+
+export default function Favourites({ currentUser }: { currentUser: User }) {
   const router = useRouter();
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
-  const { data: movies = [] }: { data: Movie[] | undefined } =
-    useFindFourList();
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    const updateMovies = async () => {
+      const favouriteIds = currentUser.favouriteIds;
+      const response = await axios.post("/api/findFour", {
+        movieIds: favouriteIds,
+      });
+      const movieList: Movie[] = response.data;
+      setMovies(movieList);
+      console.log(movieList);
+    };
+    updateMovies();
+  }, [currentUser]);
 
   return (
     <div className="flex flex-col md:flex-row w-screen ">
@@ -36,7 +72,7 @@ export default function Favourites() {
         }  `}
       >
         <div className=" grid grid-cols-1 md:grid-cols-2 md:gap-3 gap-y-4">
-          {movies.map((movie: Movie) => (
+          {movies?.map((movie: Movie) => (
             <MovieDetail key={movie.id} data={movie} />
           ))}
         </div>

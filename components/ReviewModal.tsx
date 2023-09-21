@@ -25,7 +25,6 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ setReview }) => {
               className="w-full h-24 mb-4 p-2 border border-gray-300 rounded"
             ></textarea>
             <div className="flex justify-end">
-              {/* Close button */}
               <button
                 className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2"
                 onClick={() => setReview(false)}

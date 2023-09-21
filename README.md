@@ -6,7 +6,7 @@
 - For `CredentialsProvider`, we are comparing the email and password.
 - Session strategy we are using JWT tokens.
 
-## **Movie**
+## **Movie page**
 
 ### Session Checking
 
@@ -34,35 +34,17 @@
 
 - Retrieves User Session from NextAuth and executes post request add a favourite movie using user `email`
 
-### HelpPanel
+## **Favourite Page**
 
-Ui of the Chat Panel.
+- Calls the `serverAuth` props during getServerSideProp to retrieve the current user.
 
-### Box
+### **MovieDetail**
 
-Ui of the buttons to connect.
+- Receives a `Movie` as props and displays the Movie accordingly.
 
-## Admin Page
+### **Pagination**
 
-Page that allows admin to handle client Help Requests
-
-#### On Page Render: `useEffect`
-
-- Create an Agora instance.
-- Establish connection to AgoraRTM channel(Default channel and GoodBye channel).
-- Listen to the Default channel as well as the GoodBye channel in order to invalidate the HelpRequest after each creation/deletion of HelpRequest.
-
-#### Clicking Help Request: `handleHelpRequestClicked`
-
-- Leave any previous channel it was connected to.
-- Establish connection to AgoraRTM channel(HelpRequestId).
-- Listen on channel for incoming messages.
-- Upon receiving an incoming Message, it will update its local state.
-
-#### Sending Message: `handleSendMessage`
-
-- Execute Post Request of message to database.
-- Sends a message via the channel.
+-
 
 ## **Database**
 

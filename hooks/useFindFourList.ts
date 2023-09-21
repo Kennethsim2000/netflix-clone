@@ -2,7 +2,9 @@ import useSWR from "swr";
 import fetcher from "@/lib/fetcher";
 import { Movie } from "@prisma/client";
 
-const useFindFourList = (): {
+const useFindFourList = (
+  requestIds: string[]
+): {
   data: Movie[] | undefined;
   error: any;
   isLoading: boolean;
