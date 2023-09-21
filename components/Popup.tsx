@@ -6,6 +6,7 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ content, setPopup }) => {
+  const router = useRouter();
   return (
     <div
       id="info-popup"
@@ -29,7 +30,7 @@ const Popup: React.FC<PopupProps> = ({ content, setPopup }) => {
           <button
             type="button"
             className="py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-blue-500 hover:bg-blue-600 focus:outline-none"
-            onClick={handleDirect}
+            onClick={() => router.push("/favourite")}
           >
             Proceed to favorites page
           </button>
