@@ -3,9 +3,9 @@ import Topbar from "@/components/Topbar";
 import Billboard from "@/components/Billboard";
 import { useEffect, useState } from "react";
 import MovieList from "@/components/movieList";
+import ReviewModal from "@/components/ReviewModal";
 import useMovieList from "@/hooks/useMovieList";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import { Movie } from "@prisma/client";
 import { NextPageContext } from "next";
 import axios from "axios";
@@ -27,6 +27,7 @@ export async function getServerSideProps(context: NextPageContext) {
 
 export default function Home() {
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
+  const [review, setReview] = useState<boolean>(false);
   const { data: movies = [] }: { data: Movie[] | undefined } = useMovieList();
   const { data: session } = useSession();
 
@@ -45,7 +46,6 @@ export default function Home() {
         console.log(error);
       }
     };
-
     updateUser();
   }, []);
 
@@ -71,8 +71,9 @@ export default function Home() {
       >
         <Billboard />
         <div className="pb-40">
-          <MovieList title="Trending now" data={movies} />
+          <MovieList title="Trending now" data={movies} setReview={setReview} />
         </div>
+        {review && <ReviewModal setReview={setReview} />}
       </main>
     </div>
   );

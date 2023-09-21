@@ -30,6 +30,10 @@
 
 - Accepts **Data** as props from the `Movie` parent, and maps the data as `MovieCard`
 
+### **MovieCard**
+
+- Retrieves User Session from NextAuth and executes post request add a favourite movie using user `email`
+
 ### HelpPanel
 
 Ui of the Chat Panel.

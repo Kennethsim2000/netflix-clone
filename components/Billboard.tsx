@@ -7,6 +7,7 @@ const Billboard = () => {
   const { data: movies = [] } = useMovieList();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showContent, setShowContent] = useState(true);
+  
   useEffect(() => {
     setShowContent(true);
     const timer = setTimeout(() => {

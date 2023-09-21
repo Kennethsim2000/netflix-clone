@@ -1,25 +1,40 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { useState } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import { BsHandThumbsUpFill } from "react-icons/bs";
+import Popup from "./Popup";
 
 interface MoviecardProps {
   data: Record<string, any>;
   id: string;
+  setReview: (value: boolean) => void;
 }
 
-const MovieCard: React.FC<MoviecardProps> = ({ data, id }) => {
+const MovieCard: React.FC<MoviecardProps> = ({ data, id, setReview }) => {
   const { data: session } = useSession();
+  const [popup, setPopup] = useState<boolean>(false);
+  const [content, setContent] = useState<string>("");
+
   const addFavourite = async () => {
-    await axios.post("/api/updateFavourite", {
+    const response = await axios.post("/api/updateFavourite", {
       favouriteId: id,
       email: session?.user?.email,
     });
+    if (response.status === 200) {
+      setPopup(true);
+      setContent("Movie successfully added");
+      console.log("Added");
+    } else if (response.status === 201) {
+      setPopup(true);
+      setContent("Movie already in favorites");
+      console.log("already in favourites");
+    }
   };
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
+      {popup ? <Popup content={content} setPopup={setPopup} /> : null}
       <img
         className="cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover: opacity-90 sm: group-hover:opacity-0 delay-300 w-full h-[12vw]"
         src={data.thumbnailUrl}
@@ -42,7 +57,10 @@ const MovieCard: React.FC<MoviecardProps> = ({ data, id }) => {
             >
               <BsHandThumbsUpFill size={25} />
             </div>
-            <div className="cursor-pointer w-6 h-6 lg:w-20 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 font-bold">
+            <div
+              className="cursor-pointer w-6 h-6 lg:w-20 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 font-bold"
+              onClick={() => setReview(true)}
+            >
               Review
             </div>
           </div>

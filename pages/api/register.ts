@@ -10,7 +10,6 @@ export default async function handler(
     return res.status(405).end();
   }
   try {
-    console.log("code comes to register handler");
     const { email, username, password } = req.body;
     const existingUser = await prismadb.user.findUnique({
       where: {

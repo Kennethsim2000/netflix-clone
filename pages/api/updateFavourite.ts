@@ -21,6 +21,10 @@ export default async function handler(
       return res.status(400).json({ message: "User does not exist" });
     }
 
+    if (currentUser.favouriteIds.includes(favouriteId)) {
+      //checking if the movie is already in user favourite
+      return res.status(201).json({ message: "Movie already in favorites" });
+    }
     const updatedUser = await prismadb.user.update({
       where: { id: currentUser?.id },
       data: {
