@@ -36,4 +36,5 @@ model Comment {
   thumbnailUrl String?
   review       String
   username     String
+  star         Int?
 }

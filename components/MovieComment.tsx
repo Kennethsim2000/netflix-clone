@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { Comment } from "@prisma/client";
+import { RiStarSFill } from "react-icons/ri";
 
 interface MovieCommentProps {
   comment: Comment;
@@ -19,8 +20,19 @@ const MovieComment: React.FC<MovieCommentProps> = ({ comment }) => {
           <h2 className="text-white text-lg md:text-xl font-bold">
             {comment.title}
           </h2>
-          <div className="text-white bg-grey-500 md:h-28 text-sm py-2 overflow-hidden ">
+          <div className="text-white bg-gray-500 md:h-28 text-sm py-2 overflow-hidden px-3">
             {comment.review}
+          </div>
+          {/* put the stars here */}
+          <div className="flex items-center mt-2">
+            {comment.star && comment.star > 0
+              ? Array.from({ length: comment.star }).map((_, index) => (
+                  <RiStarSFill
+                    key={index}
+                    className="text-yellow-400 inline-block"
+                  />
+                ))
+              : null}
           </div>
           <p className="text-white mt-2">Rating by</p>
           <p className="text-white ">{comment.username}</p>

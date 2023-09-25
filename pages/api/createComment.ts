@@ -9,7 +9,7 @@ export default async function handler(
     return res.status(405).end();
   }
   try {
-    const { username, review, title } = req.body;
+    const { username, review, title, star } = req.body;
     const movie = await prismadb.movie.findUnique({
       where: {
         title: title,
@@ -24,6 +24,7 @@ export default async function handler(
         thumbnailUrl: movie.thumbnailUrl,
         review: review,
         username: username,
+        star: star,
       },
     });
     return res.status(200).json(comment);

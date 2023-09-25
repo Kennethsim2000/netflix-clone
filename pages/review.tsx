@@ -42,7 +42,7 @@ export default function Review() {
           partialSideBar ? "md:ml-64 " : "md:ml-16  "
         }  `}
       >
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-2 ">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-2 md:gap-2 ">
           {comments?.map((comment) => (
             <MovieComment key={comment.id} comment={comment} />
           ))}

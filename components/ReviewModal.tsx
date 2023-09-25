@@ -24,6 +24,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
         username: currentUser.username,
         review: reviewText,
         title: currentMovie.title,
+        star: star,
       });
       setReview(false);
     } catch (error) {
@@ -42,7 +43,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
               placeholder="Write your review here"
-              className="w-full h-24 mb-4 p-2 border border-gray-300 rounded"
+              className="w-full h-24 mb-4 p-2 border border-gray-300 rounded focus:outline-none "
             ></textarea>
             <Stars setStar={setStar} star={star} />
             <div className="flex justify-end">
