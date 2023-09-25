@@ -76,7 +76,6 @@ export default function Favourites({ currentUser }: { currentUser: User }) {
             <MovieDetail key={movie.id} data={movie} />
           ))}
         </div>
-        <Pagination page={page} setPage={setPage} />
       </main>
     </div>
   );

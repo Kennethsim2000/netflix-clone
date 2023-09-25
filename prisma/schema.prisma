@@ -31,8 +31,9 @@ model Movie {
 }
 
 model Comment {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  title    String
-  review   String
-  username String
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  thumbnailUrl String?
+  review       String
+  username     String
 }

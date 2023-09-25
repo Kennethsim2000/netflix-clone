@@ -21,6 +21,7 @@ export default async function handler(
     const comment = await prismadb.comment.create({
       data: {
         title: movie.title || " ",
+        thumbnailUrl: movie.thumbnailUrl,
         review: review,
         username: username,
       },

@@ -1,6 +1,7 @@
 import { Movie, User } from "@prisma/client";
 import axios from "axios";
 import { useState } from "react";
+import Stars from "./Stars";
 
 interface ReviewModalProps {
   setReview: (value: boolean) => void;
@@ -14,6 +15,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   currentUser,
 }) => {
   const [reviewText, setReviewText] = useState<string>("");
+  const [star, setStar] = useState<number>(0);
 
   const handleReviewSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,6 +44,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
               placeholder="Write your review here"
               className="w-full h-24 mb-4 p-2 border border-gray-300 rounded"
             ></textarea>
+            <Stars setStar={setStar} star={star} />
             <div className="flex justify-end">
               <button
                 className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2"
