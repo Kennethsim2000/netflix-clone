@@ -1,14 +1,32 @@
+import { Movie, User } from "@prisma/client";
+import axios from "axios";
 import { useState } from "react";
 
 interface ReviewModalProps {
   setReview: (value: boolean) => void;
+  currentMovie: Movie;
+  currentUser: User;
 }
 
-const ReviewModal: React.FC<ReviewModalProps> = ({ setReview }) => {
-  const [reviewText, setReviewText] = useState("");
+const ReviewModal: React.FC<ReviewModalProps> = ({
+  setReview,
+  currentMovie,
+  currentUser,
+}) => {
+  const [reviewText, setReviewText] = useState<string>("");
 
-  const handleReviewSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleReviewSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      await axios.post("/api/createComment", {
+        username: currentUser.username,
+        review: reviewText,
+        title: currentMovie.title,
+      });
+      setReview(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

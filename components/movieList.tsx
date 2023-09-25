@@ -1,14 +1,21 @@
 import React from "react";
 import { isEmpty } from "lodash";
 import MovieCard from "./MovieCard";
+import { Movie } from "@prisma/client";
 
 interface MovieListProps {
-  data: Record<string, any>[];
+  data: Movie[];
   title: string;
   setReview: (value: boolean) => void;
+  setCurrentMovie: (movie: Movie) => void;
 }
 
-const movieList: React.FC<MovieListProps> = ({ data, title, setReview }) => {
+const movieList: React.FC<MovieListProps> = ({
+  data,
+  title,
+  setReview,
+  setCurrentMovie,
+}) => {
   return (
     <div className=" px-4 md:px-12 mt-4 space-y-8">
       <div>
@@ -21,6 +28,7 @@ const movieList: React.FC<MovieListProps> = ({ data, title, setReview }) => {
             data={movie}
             id={movie.id}
             setReview={setReview}
+            setCurrentMovie={setCurrentMovie}
           />
         ))}
       </div>

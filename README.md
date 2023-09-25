@@ -33,10 +33,17 @@
 ### **MovieCard**
 
 - Retrieves User Session from NextAuth and executes post request add a favourite movie using user `email`
+- Upon clicking the review button, passes current movie prop to review modal.
+
+### **ReviewModal**
+
+- Makes a post request on the comments table.
 
 ## **Favourite Page**
 
 - Calls the `serverAuth` props during getServerSideProp to retrieve the current user.
+- Retrieve the `favouriteIds` of the current user.
+- Using the favouriteIds of the currentUser, do a request to the `api/findFour` endpoint to retrieve four of the user's favourite movie.
 
 ### **MovieDetail**
 
@@ -45,6 +52,8 @@
 ### **Pagination**
 
 -
+
+## **Comment Page**
 
 ## **Database**
 

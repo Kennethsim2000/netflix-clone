@@ -5,14 +5,21 @@ import React, { useState } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import { BsHandThumbsUpFill } from "react-icons/bs";
 import Popup from "./Popup";
+import { Movie } from "@prisma/client";
 
 interface MoviecardProps {
-  data: Record<string, any>;
+  data: Movie;
   id: string;
   setReview: (value: boolean) => void;
+  setCurrentMovie: (movie: Movie) => void;
 }
 
-const MovieCard: React.FC<MoviecardProps> = ({ data, id, setReview }) => {
+const MovieCard: React.FC<MoviecardProps> = ({
+  data,
+  id,
+  setReview,
+  setCurrentMovie,
+}) => {
   const { data: session } = useSession();
   const [popup, setPopup] = useState<boolean>(false);
   const [content, setContent] = useState<string>("");
@@ -59,7 +66,10 @@ const MovieCard: React.FC<MoviecardProps> = ({ data, id, setReview }) => {
             </div>
             <div
               className="cursor-pointer w-6 h-6 lg:w-20 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 font-bold"
-              onClick={() => setReview(true)}
+              onClick={() => {
+                setCurrentMovie(data);
+                setReview(true);
+              }}
             >
               Review
             </div>

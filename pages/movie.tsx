@@ -6,9 +6,10 @@ import MovieList from "@/components/movieList";
 import ReviewModal from "@/components/ReviewModal";
 import useMovieList from "@/hooks/useMovieList";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
-import { Movie } from "@prisma/client";
-import { NextPageContext } from "next";
+import { Movie, User } from "@prisma/client";
+import { NextApiRequest, NextPageContext } from "next";
 import axios from "axios";
+import serverAuth from "@/lib/serverAuth";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -20,16 +21,20 @@ export async function getServerSideProps(context: NextPageContext) {
       },
     };
   }
+  const { currentUser } = await serverAuth(context.req as NextApiRequest);
   return {
-    props: {},
+    props: {
+      currentUser,
+    },
   };
 }
 
-export default function Home() {
+export default function Home({ currentUser }: { currentUser: User }) {
   const [partialSideBar, setPartialSideBar] = useState<boolean>(true);
   const [review, setReview] = useState<boolean>(false);
   const { data: movies = [] }: { data: Movie[] | undefined } = useMovieList();
   const { data: session } = useSession();
+  const [currentMovie, setCurrentMovie] = useState<Movie>();
 
   useEffect(() => {
     const updateUser = async () => {
@@ -70,9 +75,20 @@ export default function Home() {
       >
         <Billboard />
         <div className="pb-40">
-          <MovieList title="Trending now" data={movies} setReview={setReview} />
+          <MovieList
+            title="Trending now"
+            data={movies}
+            setReview={setReview}
+            setCurrentMovie={setCurrentMovie}
+          />
         </div>
-        {review && <ReviewModal setReview={setReview} />}
+        {review && currentMovie && (
+          <ReviewModal
+            setReview={setReview}
+            currentMovie={currentMovie}
+            currentUser={currentUser}
+          />
+        )}
       </main>
     </div>
   );

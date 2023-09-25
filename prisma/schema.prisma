@@ -22,10 +22,17 @@ model User {
 
 model Movie {
   id           String @id @default(auto()) @map("_id") @db.ObjectId
-  title        String
+  title        String @unique
   description  String
   videoUrl     String
   thumbnailUrl String
   genre        String
   duration     String
+}
+
+model Comment {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  review   String
+  username String
 }
